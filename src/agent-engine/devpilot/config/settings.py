@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     llm_provider: str = "openai"
-    llm_model: str = ""
+    llm_model: str = "gpt-4.1-mini"
     openai_api_key: str = ""
 
     model_config = SettingsConfigDict(
