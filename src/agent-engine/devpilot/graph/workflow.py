@@ -12,6 +12,7 @@ from devpilot.graph.nodes import (
     collect_repository_evidence,
     analyze_repository,
     design_architecture,
+    create_implementation_plan,
 )
 
 from devpilot.graph.routing import (
@@ -62,6 +63,11 @@ def build_workflow():
     workflow.add_node(
         "design_architecture",
         design_architecture,
+    )
+
+    workflow.add_node(
+        "create_implementation_plan",
+        create_implementation_plan,
     )
 
     # ---------------------------------------------------------
@@ -121,6 +127,11 @@ def build_workflow():
 
     workflow.add_edge(
         "design_architecture",
+        "create_implementation_plan",
+    )
+
+    workflow.add_edge(
+        "create_implementation_plan",
         END,
     )
 

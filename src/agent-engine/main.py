@@ -6,9 +6,9 @@ def main():
 
     initial_state = {
         "requirement": (
-            # "Add distributed caching to the Product API "
-            # "using Redis."
-            "Make the system better."
+            "Add distributed caching to the Product API "
+            "using Redis."
+            # "Make the system better."
         ),
         "repository_path": (
             "../../samples/SampleProductApi"
@@ -74,6 +74,21 @@ def main():
 
         print(
             architecture.model_dump_json(
+                indent=2
+            )
+        )
+
+    if "implementation_plan" in result:
+        implementation_plan = result[
+            "implementation_plan"
+        ]
+
+        print()
+        print("Implementation Plan")
+        print()
+
+        print(
+            implementation_plan.model_dump_json(
                 indent=2
             )
         )

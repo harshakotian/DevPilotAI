@@ -9,7 +9,9 @@ from devpilot.models.repository import (
 from devpilot.models.architecture import (
     ArchitectureProposal,
 )
-
+from devpilot.models.implementation import (
+    ImplementationPlan,
+)
 
 class DevPilotState(TypedDict, total=False):
     requirement: str
@@ -20,8 +22,9 @@ class DevPilotState(TypedDict, total=False):
     repository_summary: RepositorySummary
     repository_evidence: RepositoryEvidence
     repository_analysis: RepositoryAnalysis
-    
+
     architecture_proposal: ArchitectureProposal
+    implementation_plan: ImplementationPlan
 
     status: str
     errors: list[str]

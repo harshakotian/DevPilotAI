@@ -11,6 +11,9 @@ from devpilot.services.repository_evidence_service import (
 from devpilot.agents.architect_agent import (
     ArchitectAgent,
 )
+from devpilot.agents.planning_agent import (
+    ImplementationPlanningAgent,
+)
 
 def receive_requirement(
     state: DevPilotState,
@@ -196,4 +199,37 @@ def design_architecture(
         **state,
         "architecture_proposal": proposal,
         "status": "architecture_proposed",
+    }
+
+def create_implementation_plan(
+    state: DevPilotState,
+) -> DevPilotState:
+    print()
+    print("Running Implementation Planning Agent...")
+
+    llm_service = create_llm_service()
+
+    planner = ImplementationPlanningAgent(
+        llm_service=llm_service
+    )
+
+    plan = planner.plan(
+        requirement=state["requirement"],
+        requirement_analysis=state[
+            "requirement_analysis"
+        ],
+        repository_analysis=state[
+            "repository_analysis"
+        ],
+        architecture_proposal=state[
+            "architecture_proposal"
+        ],
+    )
+
+    print("Implementation plan complete.")
+
+    return {
+        **state,
+        "implementation_plan": plan,
+        "status": "implementation_planned",
     }
